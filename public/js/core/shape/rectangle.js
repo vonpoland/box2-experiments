@@ -5,8 +5,8 @@ class Rectangle extends BasicShape {
         super(options);
     }
 
-    get template() {
-        return '<rect/>';
+    get tag() {
+        return 'rect';
     }
 }
 

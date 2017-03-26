@@ -1,5 +1,6 @@
 import DragHandler from 'core/drag/dragHandler';
 import {renderShape, renderContent, hasShape, updateShapeLayout} from './helpers';
+import eventbus from 'eventbus';
 
 class Renderer {
     constructor(element, options = {}) {
@@ -20,21 +21,30 @@ class Renderer {
         this.content = renderContent(element);
     }
 
-    onMove(event) {
+    onMove(event, isTouch) {
         if(this.dragData && this.dragData.canMove) {
-            updateShapeLayout(event, this.dragData.target)
+            updateShapeLayout(event, isTouch ? event.target : this.dragData.target);
+            eventbus.trigger(eventbus.EVENTS.SELECTION.SHAPE_MOVED, isTouch ? event : this.dragData);
         }
     }
 
     onSelect(event) {
-        this.dragData = {
-            canMove : !! hasShape(event),
-            target: event.target
+        //eventbus.trigger(eventbus.EVENTS.SELECTION.SHAPE_DESELECTED, event);
+        var selected = !! hasShape(event);
+
+        if(selected) {
+            this.dragData = {
+                canMove: selected,
+                target: event.target
+            };
+
+            eventbus.trigger(eventbus.EVENTS.SELECTION.SHAPE_SELECTED, event);
         }
     }
 
-    onStop() {
-        this.dragData = undefined;
+    onStop(event) {
+        eventbus.trigger(eventbus.EVENTS.SELECTION.SHAPE_DESELECTED, event);
+        this.dragData && (this.dragData.canMove = false);
     }
 
     add(shape) {

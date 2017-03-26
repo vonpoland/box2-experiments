@@ -9,8 +9,8 @@ class Rectangle extends BasicShape {
         this.r = options.r = 100;
     }
 
-    get template() {
-        return '<circle/>';
+    get tag() {
+        return 'circle';
     }
 
     render(element) {

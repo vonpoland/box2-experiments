@@ -1,8 +1,11 @@
+var id = 1;
+
 function createDom(element, shape) {
-    element.insertAdjacentHTML('beforeEnd', shape.template);
+    element.append(document.createElementNS('http://www.w3.org/2000/svg', shape.tag));
 
     var dom = element.childNodes[element.childNodes.length - 1];
 
+    dom.setAttribute('id', id++);
     addLayout(shape, dom);
     dom.shape = shape;
 }
@@ -19,7 +22,7 @@ function addLayout(shape, shapeDom) {
 }
 
 export function renderContent(element) {
-    var svg = document.createElementNS("http://www.w3.org/2000/svg", 'svg');
+    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 
     svg.setAttribute('width', '100%');
     svg.setAttribute('height', '100%');

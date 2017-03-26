@@ -12,7 +12,9 @@
 </head>
 <body>
 <div id="root">
+    <div id="selection"></div>
     <div id="renderer"></div>
+    <div id="error" style="position:absolute;right:0;top:0;"></div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.20.10/system.js"></script>
 <script>
@@ -22,12 +24,25 @@
             'babel-runtime/helpers/classCallCheck': 'libs/babel-runtime/helpers/classCallCheck'
         },
         packages: {
+            eventbus: {
+                main: 'eventbus.js'
+            },
+            selection: {
+                main: 'selection.js'
+            },
             core: {
                 defaultExtension: 'js'
             }
         }
     });
-    System.import("boot.js");
+
+    window.logger = function (e) {
+        document.getElementById('error').innerText = e;
+    }
+    System.import("boot.js")
+            .catch(function(e) {
+                document.getElementById('error').innerText = e;
+            });
     document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
             ':35729/livereload.js?snipver=1"></' + 'script>')
 </script>
