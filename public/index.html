@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>smart shapes</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="root">
+    <div id="renderer"></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.20.10/system.js"></script>
+<script>
+    System.config({
+        "baseURL": "js",
+        map: {
+            'babel-runtime/helpers/classCallCheck': 'libs/babel-runtime/helpers/classCallCheck'
+        },
+        packages: {
+            core: {
+                defaultExtension: 'js'
+            }
+        }
+    });
+    System.import("boot.js");
+    document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
+            ':35729/livereload.js?snipver=1"></' + 'script>')
+</script>
+</body>
+</html>

@@ -6,8 +6,8 @@ const EVENTS = {
           MOVE: 'mousemove'
       },
       TOUCH: {
-          START: 'touchstart',
-          END: 'touchend',
+          DOWN: 'touchstart',
+          UP: 'touchend',
           MOVE: 'touchmove'
       }
   }
