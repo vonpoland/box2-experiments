@@ -22,7 +22,7 @@ class Selection {
             let child = this.element.childNodes[i];
             let isMouseEvent = typeof event.identifier === 'undefined';
 
-            if(isMouseEvent || parseInt(child.getAttribute('identifier')) === event.identifier) {
+            if(isMouseEvent || child.getAttribute('identifier') === event.identifier) {
                 this.element.removeChild(child);
             }
         }
@@ -42,8 +42,7 @@ class Selection {
         for(var i = 0; i < childLength; i++) {
             let child = this.element.childNodes[i];
             let isMouseEvent = typeof event.identifier === 'undefined';
-            console.info(event.identifier);
-            if(isMouseEvent || parseInt(child.getAttribute('identifier')) === event.identifier) {
+            if(isMouseEvent || child.getAttribute('identifier') === event.identifier) {
                 selected = child;
                 break;
             }

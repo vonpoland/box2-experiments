@@ -23,7 +23,7 @@ function onMove(event, lastEvent) {
         dx: event.x - lastEvent.x,
         dy: event.y - lastEvent.y,
         target: event.target,
-        identifier: event.identifier
+        identifier: 'drag' + event.identifier
     };
 }
 
@@ -40,7 +40,7 @@ class DragMultipleHandler {
         this.pointerPosition = {};
     }
 
-    storeLastPointerPosition(position, identifier = 'mouse',) {
+    storeLastPointerPosition(position, identifier = 'mouse') {
         this.pointerPosition[identifier] = position
     }
 
@@ -63,8 +63,8 @@ class DragMultipleHandler {
             } else {
                 for (var i = 0; i < event.changedTouches.length; i++) {
                     let touch = event.changedTouches[i];
-                    let lastTouch = this.getLastPointerPosition(touch.identifier);
-
+                    let lastTouch = this.getLastPointerPosition('drag' + touch.identifier);
+                    console.info(lastTouch, touch.identifier);
                     if (lastTouch) {
                         callback(onMove({
                             x: touch.pageX,
@@ -74,7 +74,7 @@ class DragMultipleHandler {
                         }, lastTouch), true);
                     }
 
-                    this.storeLastPointerPosition({x: touch.pageX, y: touch.pageY}, touch.identifier);
+                    this.storeLastPointerPosition({x: touch.pageX, y: touch.pageY}, 'drag' + touch.identifier);
                 }
             }
         };
@@ -101,7 +101,7 @@ class DragMultipleHandler {
 
                     callback({
                         target: event.target,
-                        identifier: touch.identifier
+                        identifier: 'drag' + touch.identifier
                     })
                 }
             }
@@ -115,14 +115,17 @@ class DragMultipleHandler {
                 callback({
                     target: event.target
                 })
+                this.storeLastPointerPosition();
             } else {
                 for (var i = 0; i < event.changedTouches.length; i++) {
                     let touch = event.changedTouches[i];
 
                     callback({
                         target: event.target,
-                        identifier: touch.identifier
-                    })
+                        identifier: 'drag' + touch.identifier
+                    });
+
+                    this.storeLastPointerPosition(undefined, 'drag' + touch.identifier);
                 }
             }
         }

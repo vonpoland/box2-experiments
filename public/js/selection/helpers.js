@@ -3,6 +3,9 @@ const SELECTION_MARGIN = 2;
 export function updateSelection(target, content) {
     var rect = target.getBoundingClientRect();
 
+    if(!content || !content.setAttribute) {
+        console.info('test');
+    }
     content.setAttribute('width', rect.width + 2 * SELECTION_MARGIN);
     content.setAttribute('height', rect.height + 2 * SELECTION_MARGIN);
 
