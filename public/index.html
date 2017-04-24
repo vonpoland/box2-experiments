@@ -16,16 +16,11 @@
     <div id="renderer"></div>
     <div id="error" style="position:absolute;right:0;top:0;"></div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.20.10/system.js"></script>
-<script src="/systemJsConfig.js"></script>
+<script src="/js/bundle.js"></script>
 <script>
     window.logger = function (e) {
         document.getElementById('error').innerText = e;
     };
-    System.import("boot.js")
-            .catch(function(e) {
-                document.getElementById('error').innerText = e;
-            });
     document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
             ':35729/livereload.js?snipver=1"></' + 'script>')
 </script>

@@ -1,7 +1,7 @@
-import Renderer from 'core/renderer/renderer';
-import Rectangle from 'core/shape/rectangle';
-import Circle from 'core/shape/circle';
-import Selection from 'selection';
+import Renderer from './core/renderer/renderer';
+import Rectangle from './core/shape/rectangle';
+import Circle from './core/shape/circle';
+import Selection from './selection/selection';
 
 const RENDERER_ID = 'renderer';
 const SELECTION_ID = 'selection';

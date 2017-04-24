@@ -1,4 +1,4 @@
-import EVENTS from 'core/events/events';
+import EVENTS from '../events/events';
 
 const ON_SELECT = 'ON_SELECT';
 const ON_STOP = 'ON_STOP';

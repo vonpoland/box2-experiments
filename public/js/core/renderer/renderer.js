@@ -1,6 +1,6 @@
-import DragHandler from 'core/drag/dragHandler';
+import DragHandler from '../drag/dragHandler';
 import {renderShape, renderContent, hasShape, updateShapeLayout} from './helpers';
-import eventbus from 'eventbus';
+import eventbus from '../../eventbus/eventbus';
 
 class Renderer {
     constructor(element, options = {}) {

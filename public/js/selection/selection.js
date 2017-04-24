@@ -1,4 +1,4 @@
-import eventbus from 'eventbus';
+import eventbus from '../eventbus/eventbus';
 import {updateSelection, showSelection} from './helpers';
 
 class Selection {

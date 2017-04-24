@@ -9,7 +9,7 @@ if (isProduction) {
     app.use(require('connect-livereload')({
         port: 35729
     }));
-    app.use('/js', express.static(__dirname + '/dist'));
+    app.use('/js/bundle.js', express.static(__dirname + '/dist/bundle.js'));
 }
 
 app.all('/systemJsConfig.js', (req, res) => res.sendFile(__dirname + '/public/systemJsConfig.js'));
