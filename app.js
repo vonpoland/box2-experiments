@@ -6,9 +6,6 @@ var isProduction = process.env.NODE_ENV === 'production';
 if (isProduction) {
     app.use('/js/boot.js', express.static(__dirname + '/prod/outfile.js'));
 } else {
-    app.use(require('connect-livereload')({
-        port: 35729
-    }));
     app.use('/js/bundle.js', express.static(__dirname + '/dist/bundle.js'));
 }
 

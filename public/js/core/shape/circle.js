@@ -1,6 +1,6 @@
 import BasicShape from './basic';
 
-class Rectangle extends BasicShape {
+class Circle extends BasicShape {
     constructor(options = {}) {
         super(options);
 
@@ -20,4 +20,4 @@ class Rectangle extends BasicShape {
     }
 }
 
-export default Rectangle;
+export default Circle;
