@@ -18,7 +18,7 @@ function addLayout(shape, shapeDom) {
         shapeDom.setAttribute('height', shape.height);
     }
 
-    shapeDom.style.transform = `translate(${shape.x}px, ${shape.y}px)`;
+    update(shapeDom, shape)();
 }
 
 export function renderContent(element) {
