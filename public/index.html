@@ -17,30 +17,14 @@
     <div id="error" style="position:absolute;right:0;top:0;"></div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.20.10/system.js"></script>
+<script src="/systemJsConfig.js"></script>
 <script>
-    System.config({
-        "baseURL": "js",
-        map: {
-            'babel-runtime/helpers/classCallCheck': 'libs/babel-runtime/helpers/classCallCheck'
-        },
-        packages: {
-            eventbus: {
-                main: 'eventbus.js'
-            },
-            selection: {
-                main: 'selection.js'
-            },
-            core: {
-                defaultExtension: 'js'
-            }
-        }
-    });
-
     window.logger = function (e) {
         document.getElementById('error').innerText = e;
-    }
+    };
     System.import("boot.js")
             .catch(function(e) {
+                console.error(e);
                 document.getElementById('error').innerText = e;
             });
     document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +

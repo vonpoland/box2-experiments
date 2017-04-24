@@ -2,6 +2,8 @@ const gulp = require('gulp');
 const babel = require('gulp-babel');
 const sourcemaps = require('gulp-sourcemaps');
 const livereload = require('gulp-livereload');
+const path = require('path');
+const Builder = require('systemjs-builder');
 
 gulp.task('compile', () => {
     var stream = gulp.src('public/js/**/*.js')
@@ -19,6 +21,19 @@ gulp.task('compile', () => {
     return stream;
 });
 
+gulp.task('build', function () {
+    var builder = new Builder('public/js', 'public/systemJsConfig.js');
+
+    return builder
+        .buildStatic('boot.js', './prod/outfile.js', { minify: false, mangle: false, globalDefs: { DEBUG: false}})
+        .then(function() {
+            console.log('Build complete');
+        })
+        .catch(function(err) {
+            console.log('Build error');
+            console.log(err);
+        });
+});
 
 gulp.task('watch', function() {
     livereload.listen();

@@ -5,7 +5,6 @@ import Selection from 'selection';
 
 const RENDERER_ID = 'renderer';
 const SELECTION_ID = 'selection';
-
 var renderer = new Renderer(document.getElementById(RENDERER_ID));
 var selection = new Selection(document.getElementById(SELECTION_ID));
 
