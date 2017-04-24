@@ -17,5 +17,8 @@
     "gulp-livereload": "^3.8.1",
     "gulp-sourcemaps": "^2.4.1",
     "systemjs-builder": "^0.16.4"
+  },
+  "dependencies": {
+    "express": "^4.15.2"
   }
 }
