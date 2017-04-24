@@ -15,5 +15,5 @@ var server = http.listen(8080, function () {
     var host = server.address().address;
     var port = server.address().port;
 
-    console.info('Simple shapes123 app listening at http://%s:%s', host, port);
+    console.info('Simple shapes app listening at http://%s:%s', host, port);
 });
