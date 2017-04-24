@@ -1,9 +1,11 @@
 var path = require('path');
 
 module.exports = {
-    //devtool: "cheap-eval-source-map",
+    devServer: {
+        port: 8888,
+        publicPath: "/js/"
+    },
     devtool: 'inline-source-map',
-    //devtool: 'eval-source-map',
     context: __dirname + '\\public\\js',
     entry: {
       main: './boot.js'
