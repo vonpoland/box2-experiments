@@ -25,7 +25,7 @@ gulp.task('build', function () {
     var builder = new Builder('public/js', 'public/systemJsConfig.js');
 
     return builder
-        .buildStatic('boot.js', './prod/outfile.js', { minify: false, mangle: false, globalDefs: { DEBUG: false}})
+        .buildStatic('boot.js', './prod/outfile.js', { minify: true, mangle: true, globalDefs: { DEBUG: false}})
         .then(function() {
             console.log('Build complete');
         })
