@@ -1,7 +1,7 @@
 var id = 1;
 
 function createDom(element, shape) {
-    element.append(document.createElementNS('http://www.w3.org/2000/svg', shape.tag));
+    element.appendChild(document.createElementNS('http://www.w3.org/2000/svg', shape.tag));
 
     var dom = element.childNodes[element.childNodes.length - 1];
 

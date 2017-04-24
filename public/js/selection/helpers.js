@@ -30,7 +30,7 @@ export function showSelection(target, content, id) {
     rect.setAttribute('stroke-width', '1');
     rect.setAttribute('stroke-linecap', 'butt');
 
-    svg.append(rect);
+    svg.appendChild(rect);
     updateSelection(target, svg);
-    content.append(svg);
+    content.appendChild(svg);
 }
