@@ -11,14 +11,14 @@ function createDom(element, shape) {
 }
 
 function addLayout(shape, shapeDom) {
-    if(typeof shape.render === 'function') {
-       shape.render(shapeDom)
+    if (typeof shape.render === 'function') {
+        shape.render(shapeDom)
     } else {
         shapeDom.setAttribute('width', shape.width);
         shapeDom.setAttribute('height', shape.height);
     }
 
-    shapeDom.style.transform = `translate(${shape.x}px, ${shape.y}px)`;
+    update(shapeDom, shape)();
 }
 
 export function renderContent(element) {
@@ -32,15 +32,25 @@ export function renderContent(element) {
 }
 
 export function renderShape(element, shape) {
-   createDom(element, shape);
+    createDom(element, shape);
 }
 
 export function hasShape(event) {
     return typeof event.target.shape !== 'undefined';
 }
 
+var ieUpdate = (shapeDom, shape) => () => shapeDom.setAttribute('transform', `translate(${shape.x}, ${shape.y})`);
+var update = (shapeDom, shape) => () => shapeDom.style.transform = `translate(${shape.x}px, ${shape.y}px)`;
+var isIE = !!navigator.userAgent.match(/Trident/g) || !!navigator.userAgent.match(/MSIE/g) || !!navigator.userAgent.match(/Edge/g);
+
+if (isIE) {
+    // You use IE. That´s no good.
+    update = ieUpdate
+}
+
 export function updateShapeLayout(event, shapeDom) {
     var shape = shapeDom.shape;
     shape.updatePosition = event;
-    requestAnimationFrame(() => shapeDom.style.transform = `translate(${shape.x}px, ${shape.y}px)`)
+
+    requestAnimationFrame(update(shapeDom, shape));
 }
